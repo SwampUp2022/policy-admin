@@ -21,7 +21,7 @@ pipelines:
         type: image
         image:
           custom:
-            name: policy-admin-virtual/allero-base                    # imageRepo/imageName format
+            name: swampup22.jfrog.io/policy-admin-virtual/allero-base                    # imageRepo/imageName format
             tag: "1.0"                     # version tag of the initial version of the Docker image
             options: "-e HOME=/root"        # Docker options
             autoPull: true               # default true; pulls image before run
