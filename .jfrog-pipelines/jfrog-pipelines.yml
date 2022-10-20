@@ -22,7 +22,7 @@ pipelines:
         image:
           custom:
             name: policy-admin-virtual/allero-base                    # imageRepo/imageName format
-            tag: 1.0                     # version tag of the initial version of the Docker image
+            tag: "1.0"                     # version tag of the initial version of the Docker image
             options: "-e HOME=/root"        # Docker options
             autoPull: true               # default true; pulls image before run
             registry: swampup22Art       # if custom image is private, an integration is required for authentication
