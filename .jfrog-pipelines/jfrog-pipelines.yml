@@ -15,7 +15,7 @@ resources:
       interval: '0 12 * * *'
       
 pipelines:
-  - name: policy-review
+  - name: policyReview
     configuration:
       runtime:      
         type: image
