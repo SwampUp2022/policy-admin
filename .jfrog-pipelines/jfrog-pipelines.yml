@@ -38,7 +38,7 @@ pipelines:
             - name: policyAdminRepo
         execution:
           onExecute:
-            - add_pipeline_variables ALLERO_GITHUB_TOKEN=$int_swampup2022GitHub_gitProvider_token
+            - add_pipeline_variables ALLERO_GITHUB_TOKEN=$int_swampup22GitHub_gitProvider_token
             - allero fetch github SwampUp2022
             - allero validate
 
