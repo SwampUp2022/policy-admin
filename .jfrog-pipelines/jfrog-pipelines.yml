@@ -1,3 +1,19 @@
+resources:
+  - name: policyAdminRepo
+    type: GitRepo
+    configuration:
+      # SCM integration where the repository is located
+      gitProvider: swampup22GitHub
+      # Repository path, including org name/repo name
+      path: SwampUp2022/policy-admin
+      branches:
+        # Specifies which branches will trigger dependent steps
+        include: main
+  - name: dailyReview
+    type: CronTrigger
+    configuration:
+      interval: '0 12 * * *'
+      
 pipelines:
   - name: policy-review
     configuration:
@@ -12,3 +28,18 @@ pipelines:
             registry: swampup22Art       # if custom image is private, an integration is required for authentication
             sourceRepository: policy-admin-virtual      # may be required if registry is Artifactory. e.g. docker-local
             #region: <string>              # required if registry is AWS. e.g. us-east-1
+
+    steps:
+      - name: run_policy_review
+        type: Bash
+        configuration:
+          inputResources:
+            - name: dailyReview
+            - name: policyAdminRepo
+          execution:
+            onExecute:
+              - add_pipeline_variables ALLERO_GITHUB_TOKEN=$int_swampup2022GitHub_gitProvider_token
+              - allero fetch github SwampUp2022
+              - allero validate
+
+ 
